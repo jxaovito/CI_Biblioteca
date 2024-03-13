@@ -12,19 +12,22 @@ class Geral extends CI_Controller {
 
     public function mostra_lista_pessoas() {
         $this->load->view('resources/header');
-        $this->load->view('pessoas/lista_pessoas');
-        $this->load->view('resources/footer');
-        $this->load->model('pessoas');
-        $lista = $this->pessoas->get_pessoas();
 
-        foreach ($lista as $pessoa) {
-            echo $pessoa->nome_pessoa;
-        }
+        $this->load->model('pessoas');
+        $dados['lista_pessoas'] = $this->pessoas->get_pessoas();
+
+        $this->load->view('pessoas/lista_pessoas', $dados);
+        $this->load->view('resources/footer');
+
     }
 
-    public function mostra_edicao_pessoas() {
+    public function mostra_edicao_pessoas($cpf) {
         $this->load->view('resources/header');
-        $this->load->view('pessoas/edicao_pessoas');
+
+        $this->load->model('pessoas');
+        $dados['lista_pessoas'] = $this->pessoas->get_pessoa_especifica($cpf)[0];
+
+        $this->load->view('pessoas/edicao_pessoas', $dados);
         $this->load->view('resources/footer');
     }
 
@@ -45,20 +48,21 @@ class Geral extends CI_Controller {
 
     public function mostra_lista_livros() {
         $this->load->view('resources/header');
-        $this->load->view('livros/lista_livros');
-        $this->load->view('resources/footer');
+
         $this->load->model('livros');
+        $dados['lista_livros'] = $this->livros->get_livros();
 
-        $lista = $this->livros->get_livros();
-
-        foreach ($lista as $livro) {
-            echo $livro->titulo_livro;
-        }
+        $this->load->view('livros/lista_livros', $dados);
+        $this->load->view('resources/footer');
     }
 
-    public function mostra_edicao_livros() {
+    public function mostra_edicao_livros($id) {
         $this->load->view('resources/header');
-        $this->load->view('livros/edicao_livros');
+
+        $this->load->model('livros');
+        $dados['lista_livros'] = $this->livros->get_livro_especifico($id)[0];
+
+        $this->load->view('livros/edicao_livros', $dados);
         $this->load->view('resources/footer');
     }
 
@@ -71,6 +75,35 @@ class Geral extends CI_Controller {
     public function mostra_deleta_livros() {
         $this->load->view('resources/header');
         $this->load->view('livros/deleta_livros');
+        $this->load->view('resources/footer');
+    }
+
+    // EMPRÉSTIMOS =============================================================
+
+    
+    public function mostra_cadastro_emprestimo() {
+        $this->load->view('resources/header');
+
+        $this->load->model('livros');
+        $this->load->model('pessoas');
+
+        $dados['lista_pessoas'] = $this->pessoas->get_pessoas();
+        $dados['lista_livros'] = $this->livros->get_livros();
+
+        $this->load->view('emprestimos/cadastro_emprestimo', $dados);
+        $this->load->view('resources/footer');
+    }
+
+    public function mostra_lista_emprestimo() {
+        $this->load->view('resources/header');
+
+        $this->load->model('emprestimos');
+       
+
+        $dados['lista_emprestimos'] = $this->emprestimos->get_emprestimos();
+        // $dados['lista_livros'] = $this->livros->get_livros();
+
+        $this->load->view('emprestimos/lista_emprestimos', $dados);
         $this->load->view('resources/footer');
     }
 }
