@@ -24,10 +24,16 @@
 }
 
 .form_edicao{
-    margin-top: 100px;
+    margin-top: 7%;
     padding: 20px 100px 50px;
     max-width: 700px;
 }
+
+/* .form_cadastro_pessoas{
+    margin-top: 80px;
+    padding: 20px 100px 50px;
+    max-width: 700px;
+} */
 
 .container_form {
     margin-left: 3rem;
@@ -35,4 +41,12 @@
 
 .titulo_form {
     margin-bottom: 3rem;
+}
+
+.atrasado {
+    background-color: rgb(248, 174, 174) !important;
+}
+
+.data_devolucao_atrasado{
+    color: rgb(237, 23, 23);
 }

@@ -26,6 +26,9 @@
             
             redirect('geral/mostra_lista_livros');
         }
+
+        public function filtrar_por_(){
+        }
     }
     
     ?>

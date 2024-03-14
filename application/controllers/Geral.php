@@ -16,6 +16,9 @@ class Geral extends CI_Controller {
         $this->load->model('pessoas');
         $dados['lista_pessoas'] = $this->pessoas->get_pessoas();
 
+        $this->load->helper('formata_cpf_helper');
+        $dados = formata_cpf($dados);
+
         $this->load->view('pessoas/lista_pessoas', $dados);
         $this->load->view('resources/footer');
 
@@ -98,11 +101,12 @@ class Geral extends CI_Controller {
         $this->load->view('resources/header');
 
         $this->load->model('emprestimos');
-       
-
-        $dados['lista_emprestimos'] = $this->emprestimos->get_emprestimos();
-        // $dados['lista_livros'] = $this->livros->get_livros();
-
+        $dados['lista_emprestimos'] = $this->emprestimos->get_emprestimo();
+        $this->load->helper('formata_hora_helper');
+        $dados = formata_hora($dados);
+        
+        $this->emprestimos->verifica_atraso();
+        
         $this->load->view('emprestimos/lista_emprestimos', $dados);
         $this->load->view('resources/footer');
     }
