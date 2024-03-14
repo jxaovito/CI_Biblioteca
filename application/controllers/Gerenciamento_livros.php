@@ -10,7 +10,6 @@
             $this->load->model('livros');
             $this->livros->cadastro_livro();
             redirect('geral/mostra_lista_livros');
-
         }
 
         public function deleta_livro($id){

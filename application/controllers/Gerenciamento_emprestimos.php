@@ -26,22 +26,17 @@
         }
 
         public function emprestimos_atrasados(){
-            $atrasados = 0;
             $this->load->model('emprestimos');
             $atrasados = $this->emprestimos->emprestimos_atrasados();
             
             return $atrasados;
-            
         }
 
         public function retorna_data_devolucao(){
             $this->load->model('emprestimos');
             $data_devolucao = $this->emprestimos->get_data_devolucao();
             return $data_devolucao;
-
-        }
-
-      
+        } 
     }
     
     ?>

@@ -51,7 +51,7 @@ class Geral extends CI_Controller {
 
     public function mostra_lista_livros() {
         $this->load->view('resources/header');
-
+        $this->load->view('resources/barra_pesquisa');
         $this->load->model('livros');
         $dados['lista_livros'] = $this->livros->get_livros();
 
